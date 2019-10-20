@@ -5,6 +5,8 @@
  */
 package projectjv;
 
+import Frame.loginForm;
+
 /**
  *
  * @author Admin
@@ -16,7 +18,8 @@ public class Projectjv {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
+        loginForm log = new loginForm();
+        log.setVisible(true);
     }
     
 }

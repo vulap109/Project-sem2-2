@@ -215,6 +215,7 @@ public class loginForm extends javax.swing.JFrame {
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
        formchinh chinh= new formchinh();
        chinh.setVisible(true);
+       this.setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_btnloginActionPerformed
 
