@@ -5,6 +5,8 @@
  */
 package projectsjava;
 
+import Frame.loginForm;
+
 /**
  *
  * @author Admin
@@ -16,6 +18,8 @@ public class Projectsjava {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        loginForm flogin = new loginForm();
+        flogin.setVisible(true);
     }
     
 }

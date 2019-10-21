@@ -23,7 +23,7 @@ public class ketnoi {
     {
         try
         {
-            String dbURL = "jdbc:sqlserver://localhost;databaseName=QLSP;user=sa;password=123456";
+            String dbURL = "jdbc:sqlserver://DESKTOP-JBSC2JA\\SQLEXPRESS;databaseName=ProjectSem2;user=sa;password=123";
             conn = DriverManager.getConnection(dbURL);
             if(conn!=null)
             {
