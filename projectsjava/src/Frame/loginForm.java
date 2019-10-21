@@ -5,6 +5,12 @@
  */
 package Frame;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 
 
 /**
@@ -213,9 +219,32 @@ public class loginForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnregistActionPerformed
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
-       formchinh chinh= new formchinh();
-       chinh.setVisible(true);
-       this.setVisible(false);
+        if(txtuser.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "vui long dien ten dang nhap");
+        } else if(txtpass.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "vui long dien mat khau");
+        } else {
+            try {
+                String bdUrl = "jdbc:sqlserver://DESKTOP-JBSC2JA\\SQLEXPRESS;databaseName=ProjectSem2;user=sa;password=123";
+                Connection conn = DriverManager.getConnection(bdUrl);
+                String sql = "select * from username where taikhoan = ? and matkhau = ?";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, txtuser.getText());
+                ps.setString(2, txtpass.getText());
+                
+                ResultSet rs = ps.executeQuery();
+                if(rs.next()){
+                    formchinh chinh= new formchinh();
+                    chinh.setVisible(true);
+                    this.setVisible(false);
+                }else{
+                    JOptionPane.showMessageDialog(this, "dang nhap that bai");
+                }
+            } catch (Exception e) {
+                System.out.println("loi: " +e);
+            }
+        }
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_btnloginActionPerformed
 
