@@ -5,7 +5,10 @@
  */
 package Util;
 
+import Frame.formchinh;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -24,4 +27,15 @@ public class contentchats {
         this.ctc = ctc;
     }
     
+    public void getcontent(){
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+        Date date = new Date();  
+        String content, dat;
+        
+        dat=formatter.format(date);
+        content = formchinh.txtsend.getText();
+        //id1 = Integer.parseInt(formchinh.)
+        
+        ctc.add(new contenchat(dat, content));        
+    }
 }

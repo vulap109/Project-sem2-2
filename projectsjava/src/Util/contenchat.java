@@ -10,15 +10,15 @@ package Util;
  * @author Admin
  */
 public class contenchat {
-    public int id;
-    public String content;
+    //public int id1,id2;
+    public String content, date;
 
-    public int getId() {
-        return id;
+    public contenchat() {
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public contenchat(String content, String date) {
+        this.content = content;
+        this.date = date;
     }
 
     public String getContent() {
@@ -29,13 +29,16 @@ public class contenchat {
         this.content = content;
     }
 
-    public contenchat() {
+    public String getDate() {
+        return date;
     }
 
-    public contenchat(int id, String content) {
-        this.id = id;
-        this.content = content;
+    public void setDate(String date) {
+        this.date = date;
     }
+
+    
+
     
     
 }

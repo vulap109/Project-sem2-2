@@ -5,6 +5,10 @@
  */
 package Frame;
 
+import Util.ketnoi;
+import java.sql.ResultSet;
+import java.util.Vector;
+
 /**
  *
  * @author Admin
@@ -19,6 +23,48 @@ public class formuser extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    public void getdata(String sql){
+        try {
+            Vector data = null;
+            //tblmodel.setRowCount(0);
+            ketnoi kn = new ketnoi();
+            ResultSet rs = kn.TruyVan(sql);
+            while(rs.next()){
+                data = new Vector();
+                data.add(rs.getInt("masp"));
+                data.add(rs.getString("tensp"));
+                data.add(rs.getInt("loaisp"));
+                data.add(rs.getFloat("gia"));
+         
+            }
+            //tblsp.setModel(tblmodel);
+        } catch (Exception e) {
+            System.out.println("loi lay du lieu;" +e);
+        }
+    }
+    
+    //        =========================================================================================
+//        TextArea.setText(TextArea.getText() + "Cafe Management System");
+//        TextArea.setText(TextArea.getText() + "\nMã hóa đơn: " + ref);
+//        TextArea.setText(TextArea.getText() + "\n==============================================\t\t");
+//        TextArea.append("\nLatte:\t\t\t" + drink[0]);
+//        TextArea.append("\nIced Latte:\t\t\t" + drink[1]);
+//        TextArea.append("\nEspresso:\t\t\t" + drink[2]);
+//        TextArea.append("\nCappucchino:\t\t\t" + drink[3]);
+//        TextArea.append("\nIced Cappucchino:\t\t" + drink[4]);
+//        TextArea.setText(TextArea.getText() + "\n==============================================\t\t");
+//        TextArea.append("\nCoffee Cake:\t\t\t" + cake[0]);
+//        TextArea.append("\nMatcha Cake:\t\t\t" + cake[1]);
+//        TextArea.append("\nBlack Forest Cake:\t\t" + cake[2]);
+//        TextArea.append("\nXiaoZhan Chocolate Cake:\t\t" + cake[3]);
+//        TextArea.append("\nSuper Nha Trang Cake:\t\t" + cake[4]);
+//        TextArea.setText(TextArea.getText() + "\n==============================================\t\t");
+//        TextArea.setText(TextArea.getText() + "\n Thuế:\t\t\t" + jlblTax.getText());
+//        TextArea.setText(TextArea.getText() + "\n Thành tiền:\t\t\t" + jlblTotal.getText());
+//        TextArea.setText(TextArea.getText() + "\n==============================================\t\t");
+//        TextArea.setText(TextArea.getText() + "\n Ngày giao dịch:\t\t\t" + Tdate.format(timer.getTime()));
+//        TextArea.setText(TextArea.getText() + "\n Giờ giao dịch:\t\t\t" + tTime.format(timer.getTime()));
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,17 +76,22 @@ public class formuser extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtareu = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Thông tin người dùng");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtareu.setColumns(20);
+        txtareu.setRows(5);
+        jScrollPane1.setViewportView(txtareu);
 
         jButton1.setText("X");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -85,6 +136,14 @@ public class formuser extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        txtareu.setText(txtareu.getText() + "Vũ Quang Lập\n");
+        txtareu.setText(txtareu.getText() + "Ngày sinh: 10/09/1997\n");
+        txtareu.setText(txtareu.getText() + "\n==============================================\n");
+        txtareu.append("SDT:\t\t " );
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -124,6 +183,6 @@ public class formuser extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea txtareu;
     // End of variables declaration//GEN-END:variables
 }

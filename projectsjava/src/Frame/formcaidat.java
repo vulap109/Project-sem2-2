@@ -41,8 +41,18 @@ public class formcaidat extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Đăng xuất");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Thoát");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("X");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -52,8 +62,13 @@ public class formcaidat extends javax.swing.JFrame {
         });
 
         jButton5.setText("Giới thiệu");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
-        jButton6.setText("jButton6");
+        jButton6.setText("Báo cáo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,6 +108,39 @@ public class formcaidat extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        formaboutus fabout = new formaboutus();
+        fabout.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        formchinh fchinh = new formchinh();
+        formaboutus fabout = new formaboutus();
+        formcaidat fcd = new formcaidat();
+        formcontacts fcontacts = new formcontacts();
+        formdangky fdk = new formdangky();
+        formtimkiem ftim = new formtimkiem();
+        formuser fuser = new formuser();
+        loginForm flogin = new loginForm();
+        
+        fabout.setVisible(false);
+        fcd.setVisible(false);
+        fchinh.setVisible(false);
+        fcontacts.setVisible(false);
+        fdk.setVisible(false);
+        ftim.setVisible(false);
+        fuser.setVisible(false);
+        flogin.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
