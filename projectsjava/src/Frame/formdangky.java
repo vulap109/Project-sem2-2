@@ -5,6 +5,16 @@
  */
 package Frame;
 
+import Util.ketnoi;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.InputStreamReader;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author truon
@@ -89,6 +99,11 @@ public class formdangky extends javax.swing.JFrame {
         boxgt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ", "Khác" }));
 
         btndk.setText("Đăng ký");
+        btndk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndkActionPerformed(evt);
+            }
+        });
 
         btnback.setText("Quay lại");
 
@@ -179,6 +194,28 @@ public class formdangky extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtmkActionPerformed
 
+    private void btndkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndkActionPerformed
+        String tk,mk,xnmk,sdt,gt,sql,ipc;
+        int uol = 0;
+        String mc = getWindowsMotherboard_SerialNumber(); 
+        tk = txttk.getText();
+        mk = txtxnmk.getText();
+        xnmk = txtxnmk.getText();
+        sdt = txtsdt.getText();
+        gt = boxgt.getSelectedItem().toString();
+        ketnoi kn = new ketnoi();
+        try {
+            InetAddress ip = InetAddress.getLocalHost();
+            ipc = ip.getHostAddress();
+            if(txtmk.getText().equals(txtxnmk.getText()))
+        {
+            sql = "INSERT INTO username VALUES('"+tk+"','"+mk+"','"+gt+"','"+sdt+"','"+ipc+"',"+uol+",'"+mc+"')";
+        }
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(formdangky.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+    }//GEN-LAST:event_btndkActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -212,6 +249,38 @@ public class formdangky extends javax.swing.JFrame {
                 new formdangky().setVisible(true);
             }
         });
+    }
+    private String getWindowsMotherboard_SerialNumber() {      
+        String result = "";
+        try {
+            File file = File.createTempFile("realhowto",".vbs");
+            file.deleteOnExit();
+            FileWriter fw = new java.io.FileWriter(file);
+
+            String vbs =
+            "Set objWMIService = GetObject(\"winmgmts:\\\\.\\root\\cimv2\")\n"
+              + "Set colItems = objWMIService.ExecQuery _ \n"
+              + "   (\"Select * from Win32_BaseBoard\") \n"
+              + "For Each objItem in colItems \n"
+              + "    Wscript.Echo objItem.SerialNumber \n"
+              + "    exit for  ' do the first cpu only! \n"
+              + "Next \n";
+
+            fw.write(vbs);
+            fw.close();
+
+            Process p = Runtime.getRuntime().exec("cscript //NoLogo " + file.getPath());
+            BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String line;
+            while ((line = input.readLine()) != null) {
+               result += line;
+            }
+            input.close();
+        }
+        catch(Exception E){
+             System.err.println("Windows MotherBoard Exp : "+E.getMessage());
+        }
+        return result.trim();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
