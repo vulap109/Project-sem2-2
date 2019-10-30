@@ -78,6 +78,11 @@ public class formchinh extends javax.swing.JFrame {
         });
 
         bntsearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-search-40.png"))); // NOI18N
+        bntsearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntsearchActionPerformed(evt);
+            }
+        });
 
         txtareboxchat.setColumns(20);
         txtareboxchat.setRows(5);
@@ -111,6 +116,12 @@ public class formchinh extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        txtarenamebox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtarenameboxActionPerformed(evt);
+            }
+        });
+
         bntmore.setBackground(new java.awt.Color(255, 255, 255));
         bntmore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-more-50.png"))); // NOI18N
 
@@ -119,22 +130,22 @@ public class formchinh extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(27, 27, 27)
                 .addComponent(txtarenamebox, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
                 .addComponent(bntmore, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(txtarenamebox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(bntmore, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtarenamebox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 255));
@@ -233,6 +244,11 @@ public class formchinh extends javax.swing.JFrame {
         bntsend.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         bntsend.setForeground(new java.awt.Color(255, 255, 255));
         bntsend.setText("Gửi");
+        bntsend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntsendActionPerformed(evt);
+            }
+        });
 
         bntlike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-facebook-like-48.png"))); // NOI18N
 
@@ -415,6 +431,20 @@ public class formchinh extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_bntexitActionPerformed
 
+    private void txtarenameboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtarenameboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtarenameboxActionPerformed
+
+    private void bntsendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntsendActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_bntsendActionPerformed
+
+    private void bntsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntsearchActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_bntsearchActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -476,7 +506,7 @@ public class formchinh extends javax.swing.JFrame {
     private javax.swing.JTextArea txtareboxchat;
     private javax.swing.JTextField txtarenamebox;
     private javax.swing.JTextField txtsearch;
-    private javax.swing.JTextArea txtsend;
+    public static javax.swing.JTextArea txtsend;
     private javax.swing.JTextArea txttext;
     // End of variables declaration//GEN-END:variables
 }
