@@ -65,6 +65,7 @@ public class formtimkiem extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         txtsearch.setBackground(new java.awt.Color(204, 204, 255));
+        txtsearch.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtsearch.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txtsearch.setCaretColor(new java.awt.Color(204, 0, 0));
         txtsearch.setDisabledTextColor(new java.awt.Color(153, 153, 255));
@@ -90,12 +91,34 @@ public class formtimkiem extends javax.swing.JFrame {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Họ Tên", "Giới Tính", "SĐT", "Online"
             }
         ));
+        tablefriends.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(tablefriends);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
