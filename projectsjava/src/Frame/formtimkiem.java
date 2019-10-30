@@ -5,6 +5,11 @@
  */
 package Frame;
 
+import Util.ketnoi;
+import java.sql.ResultSet;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Admin
@@ -70,6 +75,11 @@ public class formtimkiem extends javax.swing.JFrame {
         });
 
         bntsearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-search-40.png"))); // NOI18N
+        bntsearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntsearchActionPerformed(evt);
+            }
+        });
 
         rdten.setText("Tìm theo tên");
 
@@ -305,6 +315,48 @@ public class formtimkiem extends javax.swing.JFrame {
     private void bntfriendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntfriendsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bntfriendsActionPerformed
+
+    public void laydulieu(String sql){
+        String header[] = {"Họ tên ", "Giới tính", "SĐT", "Online"};
+        DefaultTableModel tblmodel = new DefaultTableModel(header, 0);
+        try {
+            Vector data = null;
+            tblmodel.setRowCount(0);
+            ketnoi kn = new ketnoi();
+            ResultSet rs = kn.TruyVan(sql);
+            while(rs.next()){
+                data = new Vector();
+                data.add(rs.getString("taikhoan"));
+                data.add(rs.getString("gioitinh"));
+                data.add(rs.getInt("sdt"));
+                data.add(rs.getInt("uonline"));
+         
+                tblmodel.addRow(data);
+            }
+            tablefriends.setModel(tblmodel);
+        } catch (Exception e) {
+            System.out.println("loi lay du lieu;" +e);
+        }
+    }
+    
+    private void bntsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntsearchActionPerformed
+        // TODO add your handling code here:
+        String sql="";
+      if(rdten.isSelected())
+      {
+          String tukhoa= "";
+          tukhoa=txtsearch.getText();
+          sql="select * from username where taikhoan like '%"+tukhoa+"%'";
+          laydulieu(sql);
+      }
+      else
+      {
+           int tukhoa;
+          tukhoa=Integer.parseInt(txtsearch.getText());
+          sql="select * from username where sdt="+tukhoa+"";
+          laydulieu(sql);
+      }
+    }//GEN-LAST:event_bntsearchActionPerformed
 
     /**
      * @param args the command line arguments

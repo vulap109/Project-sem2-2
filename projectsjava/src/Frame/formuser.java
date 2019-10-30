@@ -31,10 +31,15 @@ public class formuser extends javax.swing.JFrame {
             ResultSet rs = kn.TruyVan(sql);
             while(rs.next()){
                 data = new Vector();
-                data.add(rs.getInt("masp"));
-                data.add(rs.getString("tensp"));
-                data.add(rs.getInt("loaisp"));
-                data.add(rs.getFloat("gia"));
+                String ten = rs.getString("taikhoan");
+                String gt = rs.getString("gioitinh");
+                Double sdt = rs.getDouble("sdt");
+                
+                txtareu.setText("\t\t" + ten);
+                txtareu.append("\n\nGiới Tính: \t" +gt);
+                txtareu.append("\n\nSDT:\t " +sdt );
+                txtareu.append("\n\n==============================================\n");
+              
          
             }
             //tblsp.setModel(tblmodel);
@@ -138,10 +143,11 @@ public class formuser extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        txtareu.setText(txtareu.getText() + "Vũ Quang Lập\n");
-        txtareu.setText(txtareu.getText() + "Ngày sinh: 10/09/1997\n");
-        txtareu.setText(txtareu.getText() + "\n==============================================\n");
-        txtareu.append("SDT:\t\t " );
+        String sql = "select * from username where taikhoan = '" +loginForm.txtuser.getText()+"'";
+        getdata(sql);
+        
+        
+        
     }//GEN-LAST:event_formWindowOpened
 
     /**

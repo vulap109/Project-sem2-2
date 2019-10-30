@@ -114,7 +114,6 @@ public class loginForm extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 25)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\truon\\Desktop\\Icon\\icon ung dung_24dp.png")); // NOI18N
         jLabel1.setText("TRIỀU VÀ NHỮNG NGƯỜI BẠN");
         jPanel4.add(jLabel1);
 
@@ -302,6 +301,6 @@ public class loginForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPasswordField txtpass;
-    private javax.swing.JTextField txtuser;
+    public static javax.swing.JTextField txtuser;
     // End of variables declaration//GEN-END:variables
 }
