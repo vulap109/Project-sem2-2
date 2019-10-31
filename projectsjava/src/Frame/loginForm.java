@@ -240,7 +240,7 @@ public class loginForm extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "dang nhap that bai");
                 }
             } catch (Exception e) {
-                System.out.println("loi: " +e);
+                System.out.println("loi dang nhap: " +e);
             }
         }
         
