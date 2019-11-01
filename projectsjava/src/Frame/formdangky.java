@@ -14,6 +14,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -210,6 +211,12 @@ public class formdangky extends javax.swing.JFrame {
             if(txtmk.getText().equals(txtxnmk.getText()))
         {
             sql = "INSERT INTO username VALUES('"+tk+"','"+mk+"','"+gt+"','"+sdt+"','"+ipc+"',"+uol+",'"+mc+"')";
+            kn.CapNhat(sql);
+            JOptionPane.showMessageDialog(null,"Đăng ký thành công");
+        }
+            else
+        {
+            JOptionPane.showMessageDialog(null,"Xác nhận mật khẩu phải trùng khớp");
         }
         } catch (UnknownHostException ex) {
             Logger.getLogger(formdangky.class.getName()).log(Level.SEVERE, null, ex);
