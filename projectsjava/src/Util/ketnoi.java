@@ -16,7 +16,7 @@ import java.sql.SQLException;
  * @author Admin
  */
 public class ketnoi {
-    
+    //Noon very super pro vip
     private static Connection conn;
     private static PreparedStatement stmt;
     public void KetNoiCSDL()
