@@ -28,14 +28,18 @@ public class contentchats {
     }
     
     public void getcontent(){
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
-        Date date = new Date();  
-        String content, dat;
-        
-        dat=formatter.format(date);
+        String content, sql;
+        int id = 0;
+//        sql="select idu from username where  taikhoan = '"+loginForm.txtuser.getText()+"' ";        
+//        getid gid = new getid();        
+//        id = gid.getid(sql);
         content = formchinh.txtsend.getText();
         //id1 = Integer.parseInt(formchinh.)
         
-        ctc.add(new contenchat(dat, content));        
+        ctc.add(new contenchat(content, id)); 
+        //formchinh.txttext.setText(ctc);
+        for(contenchat s: ctc)
+            System.out.println(s);
+        
     }
 }
