@@ -46,7 +46,7 @@ public class ketnoi {
         }
         catch(Exception ex)
         {
-            System.out.println("Loi:" + ex);
+            System.out.println("Loi truy van:" + ex);
         }
         return rs;
     }
@@ -63,7 +63,7 @@ public class ketnoi {
         }
         catch(Exception ex)
         {
-            System.out.println("Loi:" + ex);
+            System.out.println("Loi cap nhat:" + ex);
         }
     }
 }
