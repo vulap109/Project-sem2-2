@@ -8,12 +8,13 @@ package Frame;
 import Util.ketnoi;
 import java.sql.ResultSet;
 import java.util.Vector;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Admin
  */
-public class formuser extends javax.swing.JFrame {
+public class formuser extends javax.swing.JDialog {
 
     /**
      * Creates new form formuser
@@ -23,31 +24,39 @@ public class formuser extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
-    public void getdata(String sql){
+    public formuser(JFrame master) {
+        super(master);
+        initComponents();
+        setModalityType(ModalityType.APPLICATION_MODAL);
+        this.setLocationRelativeTo(master);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);        
+        revalidate();
+    }
+
+    public void getdata(String sql) {
         try {
             Vector data = null;
             //tblmodel.setRowCount(0);
             ketnoi kn = new ketnoi();
             ResultSet rs = kn.TruyVan(sql);
-            while(rs.next()){
+            while (rs.next()) {
                 data = new Vector();
                 String ten = rs.getString("taikhoan");
                 String gt = rs.getString("gioitinh");
                 Double sdt = rs.getDouble("sdt");
-                
+
                 txtareu.setText("\t\t" + ten);
-                txtareu.append("\n\nGiới Tính: \t" +gt);
-                txtareu.append("\n\nSDT:\t " +sdt );
+                txtareu.append("\n\nGiới Tính: \t" + gt);
+                txtareu.append("\n\nSDT:\t " + sdt);
                 txtareu.append("\n\n==============================================\n");
-              
-         
+
             }
             //tblsp.setModel(tblmodel);
         } catch (Exception e) {
-            System.out.println("loi lay du lieu;" +e);
+            System.out.println("loi lay du lieu;" + e);
         }
     }
-    
+
     //        =========================================================================================
 //        TextArea.setText(TextArea.getText() + "Cafe Management System");
 //        TextArea.setText(TextArea.getText() + "\nMã hóa đơn: " + ref);
@@ -69,7 +78,6 @@ public class formuser extends javax.swing.JFrame {
 //        TextArea.setText(TextArea.getText() + "\n==============================================\t\t");
 //        TextArea.setText(TextArea.getText() + "\n Ngày giao dịch:\t\t\t" + Tdate.format(timer.getTime()));
 //        TextArea.setText(TextArea.getText() + "\n Giờ giao dịch:\t\t\t" + tTime.format(timer.getTime()));
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -84,7 +92,7 @@ public class formuser extends javax.swing.JFrame {
         txtareu = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -143,11 +151,10 @@ public class formuser extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        String sql = "select * from username where taikhoan = '" +loginForm.txtuser.getText()+"'";
+        String sql = "select * from username where taikhoan = '" + loginForm.txtuser.getText() + "'";
         getdata(sql);
-        
-        
-        
+
+
     }//GEN-LAST:event_formWindowOpened
 
     /**

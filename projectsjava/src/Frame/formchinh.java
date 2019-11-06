@@ -5,18 +5,25 @@
  */
 package Frame;
 
+import DataControl.Autoload;
+
 /**
  *
  * @author Admin
  */
 public class formchinh extends javax.swing.JFrame {
-
+public static int iduser=0;
+public static String userName="";
+public static String userPass="";
+public static String CurrentFriend="";
     /**
      * Creates new form formchinh
      */
     public formchinh() {
         initComponents();
         this.setLocationRelativeTo(null);
+        loginForm lg=new loginForm(this);        
+        lg.setVisible(true);                
     }
 
     /**
@@ -401,8 +408,9 @@ public class formchinh extends javax.swing.JFrame {
 
     private void bntuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntuserActionPerformed
         // TODO add your handling code here:
-        formuser fuser = new formuser();
+        formuser fuser = new formuser(this);
         fuser.setVisible(true);
+       
         //this.setVisible(false);
     }//GEN-LAST:event_bntuserActionPerformed
 
@@ -454,6 +462,7 @@ public class formchinh extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+       
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -471,7 +480,7 @@ public class formchinh extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(formchinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+           
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -504,9 +513,9 @@ public class formchinh extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea txtareboxchat;
-    private javax.swing.JTextField txtarenamebox;
+    public static javax.swing.JTextField txtarenamebox;
     private javax.swing.JTextField txtsearch;
     public static javax.swing.JTextArea txtsend;
-    private javax.swing.JTextArea txttext;
+    public static javax.swing.JTextArea txttext;
     // End of variables declaration//GEN-END:variables
 }

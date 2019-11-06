@@ -5,19 +5,21 @@
  */
 package Frame;
 
+import Util.ConnectionSQL;
+import Util.ketnoi;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
-
 
 /**
  *
  * @author truon
  */
-public class loginForm extends javax.swing.JFrame {
+public class loginForm extends JDialog {
 
     /**
      * Creates new form loginFrame
@@ -25,6 +27,17 @@ public class loginForm extends javax.swing.JFrame {
     public loginForm() {
         initComponents();
         this.setLocationRelativeTo(null);
+    }
+
+    public loginForm(JFrame master) {
+
+        super(master);
+        initComponents();
+        setModalityType(ModalityType.APPLICATION_MODAL);
+        this.setLocationRelativeTo(master);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        //this.setBounds(300, 300, 400, 350);
+        revalidate();
     }
 
     /**
@@ -105,7 +118,7 @@ public class loginForm extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel4.setBackground(new java.awt.Color(0, 153, 153));
@@ -210,40 +223,39 @@ public class loginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnregistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistActionPerformed
-       formdangky re= new formdangky();
-       re.setVisible(true);
-       this.setVisible(false);
-               
+        formdangky re = new formdangky();
+        re.setVisible(true);
+        this.setVisible(false);
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnregistActionPerformed
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
-        if(txtuser.getText().equals("")){
+        if (txtuser.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "vui long dien ten dang nhap");
-        } else if(txtpass.getText().equals("")){
+        } else if (txtpass.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "vui long dien mat khau");
         } else {
             try {
-                String bdUrl = "jdbc:sqlserver://DESKTOP-JBSC2JA\\SQLEXPRESS;databaseName=ProjectSem2;user=sa;password=123";
-                Connection conn = DriverManager.getConnection(bdUrl);
+//                String bdUrl = "jdbc:sqlserver://DESKTOP-JBSC2JA\\SQLEXPRESS;databaseName=ProjectSem2;user=sa;password=123";
+//                Connection conn = DriverManager.getConnection(bdUrl);
+
                 String sql = "select * from username where taikhoan = ? and matkhau = ?";
-                PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setString(1, txtuser.getText());
-                ps.setString(2, txtpass.getText());
-                
-                ResultSet rs = ps.executeQuery();
-                if(rs.next()){
-                    formchinh chinh= new formchinh();
-                    chinh.setVisible(true);
-                    this.setVisible(false);
-                }else{
+                ResultSet rs = ConnectionSQL.Query(sql, new String[]{txtuser.getText(), String.valueOf(txtpass.getPassword())});
+                if (rs.next()) {
+//                    formchinh chinh= new formchinh();
+//                    chinh.setVisible(true);
+                    formchinh.iduser = rs.getInt("idu");
+                    formchinh.userName = rs.getString("taikhoan");                    
+                    this.dispose();
+                } else {
                     JOptionPane.showMessageDialog(this, "dang nhap that bai");
                 }
             } catch (Exception e) {
-                System.out.println("loi dang nhap: " +e);
+                System.out.println("loi dang nhap: " + e);
             }
         }
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnloginActionPerformed
 

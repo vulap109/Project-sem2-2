@@ -9,14 +9,14 @@ package Util;
  *
  * @author Admin
  */
-public class contenchat {
+public class contentchat {
     //public int id1,id2;
     public String content, date;
 
-    public contenchat() {
+    public contentchat() {
     }
 
-    public contenchat(String content, String date) {
+    public contentchat(String content, String date) {
         this.content = content;
         this.date = date;
     }

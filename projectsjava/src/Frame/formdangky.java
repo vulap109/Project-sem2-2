@@ -204,12 +204,13 @@ public class formdangky extends javax.swing.JFrame {
         xnmk = txtxnmk.getText();
         sdt = txtsdt.getText();
         gt = boxgt.getSelectedItem().toString();
-        ketnoi kn = new ketnoi();
+        ketnoi kn ;
         try {
             InetAddress ip = InetAddress.getLocalHost();
             ipc = ip.getHostAddress();
             if(txtmk.getText().equals(txtxnmk.getText()))
         {
+            kn= new ketnoi();
             sql = "INSERT INTO username VALUES('"+tk+"','"+mk+"','"+gt+"','"+sdt+"','"+ipc+"',"+uol+",'"+mc+"')";
             kn.CapNhat(sql);
             JOptionPane.showMessageDialog(null,"Đăng ký thành công");
