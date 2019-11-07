@@ -11,14 +11,20 @@ package Util;
  */
 public class contentchat {
     //public int id1,id2;
-    public String content, date;
+    public String content;
+
+    public int id;
 
     public contentchat() {
     }
 
-    public contentchat(String content, String date) {
+//<<<<<<< HEAD:projectsjava/src/Util/contentchat.java
+    public contentchat(String content, String date) {}
+//=======
+    public contentchat(String content, int id) {
+//>>>>>>> 9d5887f098cf8bca32268eb3034b20d1d5a409f6:projectsjava/src/Util/contenchat.java
         this.content = content;
-        this.date = date;
+        this.id = id;
     }
 
     public String getContent() {
@@ -29,13 +35,19 @@ public class contentchat {
         this.content = content;
     }
 
-    public String getDate() {
-        return date;
+    public int getId() {
+        return id;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setId(int id) {
+        this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "contenchat{" + "content=" + content + ", id=" + id + '}';
+    }
+    
 
     
 

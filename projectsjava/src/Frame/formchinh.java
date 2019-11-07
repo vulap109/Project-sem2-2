@@ -446,6 +446,7 @@ public static String CurrentFriend="";
     private void bntsendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntsendActionPerformed
         // TODO add your handling code here:
         
+        
     }//GEN-LAST:event_bntsendActionPerformed
 
     private void bntsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntsearchActionPerformed

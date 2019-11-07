@@ -107,6 +107,11 @@ public class formdangky extends javax.swing.JFrame {
         });
 
         btnback.setText("Quay lại");
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -214,6 +219,11 @@ public class formdangky extends javax.swing.JFrame {
             sql = "INSERT INTO username VALUES('"+tk+"','"+mk+"','"+gt+"','"+sdt+"','"+ipc+"',"+uol+",'"+mc+"')";
             kn.CapNhat(sql);
             JOptionPane.showMessageDialog(null,"Đăng ký thành công");
+            txtmk.setText("");
+            txttk.setText("");
+            txtxnmk.setText("");
+            txtsdt.setText("");
+            
         }
             else
         {
@@ -223,6 +233,13 @@ public class formdangky extends javax.swing.JFrame {
             Logger.getLogger(formdangky.class.getName()).log(Level.SEVERE, null, ex);
         }    
     }//GEN-LAST:event_btndkActionPerformed
+
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        // TODO add your handling code here:
+        loginForm flogin = new loginForm();
+        flogin.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnbackActionPerformed
 
     /**
      * @param args the command line arguments
