@@ -17,8 +17,9 @@ import java.util.logging.Logger;
  *
  * @author truon
  */
-public class AutoLoadChat extends Thread {
-    private String sql,user,friend, content;
+public class AutoLoadFriend extends Thread {
+
+    private String sql,user,friend;
     private int idu, idf;
     private loginForm lg;
     private formchinh mainf;
@@ -37,8 +38,8 @@ public class AutoLoadChat extends Thread {
     }
    public void Loaddata(){
       
-       user= formchinh.userName;
-       friend= formchinh.CurrentFriend;
+       //user= formchinh.userName;
+       //friend= formchinh.CurrentFriend;
        //lay idu cua user trong bang taikhoan s e noi ko dk
        sql="select idu  from username where taikhoan='"+user+"'";
        rs= kn.TruyVan(sql);
@@ -49,7 +50,7 @@ public class AutoLoadChat extends Thread {
             Logger.getLogger(AutoLoadChat.class.getName()).log(Level.SEVERE, null, ex);
         }
         // lay idu cua friend trong bang taikhoan
-       sql="select idu from username where taikhoan='"+friend+"'";
+       sql="select idf from connectuf where idu="+idu+"";
        kn.TruyVan(sql);
        try {
             while(rs.next()){
@@ -58,15 +59,17 @@ public class AutoLoadChat extends Thread {
             Logger.getLogger(AutoLoadChat.class.getName()).log(Level.SEVERE, null, ex);
         }
        // su dung 2 idu de lay ra content tai bang connectuf
-       sql="select contentchat from connectuf where idu="+idu+" and idf="+idf+"";
+       sql="select taikhoan from username where idf="+idf+"";
        rs= kn.TruyVan(sql);
        // lay content va load len o noi dung chat chinh 
        try {
             while(rs.next()){
-                content=rs.getString("contentchat");
-                mainf.txttext.setText(content);
+                friend=rs.getString("contentchat");
+                formchinh.txtareboxchat.setText(friend);
+                System.out.println("--------------");
             }} catch (SQLException ex) {
             Logger.getLogger(AutoLoadChat.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
- }
+    
+}

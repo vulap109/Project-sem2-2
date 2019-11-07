@@ -5,7 +5,7 @@
  */
 package Frame;
 
-import DataControl.Autoload;
+import DataControl.AutoLoadChat;
 
 /**
  *
@@ -513,7 +513,7 @@ public static String CurrentFriend="";
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea txtareboxchat;
+    public static javax.swing.JTextArea txtareboxchat;
     public static javax.swing.JTextField txtarenamebox;
     private javax.swing.JTextField txtsearch;
     public static javax.swing.JTextArea txtsend;
