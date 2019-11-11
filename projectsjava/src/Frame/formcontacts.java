@@ -5,6 +5,15 @@
  */
 package Frame;
 
+import static Frame.loginForm.txtuser;
+import Util.ketnoi;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Admin
@@ -44,14 +53,21 @@ public class formcontacts extends javax.swing.JFrame {
         bntcontact = new javax.swing.JButton();
         bntsetting = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtareinvite = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblmkb = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        txtxn = new javax.swing.JTextField();
+        btndy = new javax.swing.JButton();
+        btnhuy = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -209,58 +225,80 @@ public class formcontacts extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        txtareinvite.setColumns(20);
-        txtareinvite.setRows(5);
-        jScrollPane2.setViewportView(txtareinvite);
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Lời mời kết bạn");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setText("Gợi ý kết bạn");
+        tblmkb.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblmkb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblmkbMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tblmkb);
 
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setText("Xác nhận");
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 372, Short.MAX_VALUE)
-        );
+        btndy.setText("Đông ý");
+        btndy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndyActionPerformed(evt);
+            }
+        });
+
+        btnhuy.setText("Hủy");
+        btnhuy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnhuyActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel4)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(txtxn, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btndy, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnhuy, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtxn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btndy)
+                    .addComponent(btnhuy))
+                .addGap(74, 74, 74)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(194, Short.MAX_VALUE))
         );
 
         jButton1.setText("X");
@@ -289,9 +327,9 @@ public class formcontacts extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -337,7 +375,114 @@ public class formcontacts extends javax.swing.JFrame {
         formcaidat fcaidat = new formcaidat();
         fcaidat.setVisible(true);
     }//GEN-LAST:event_bntsettingActionPerformed
+  
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        String sql;
+        ketnoi kn = new ketnoi();
+        
+    }//GEN-LAST:event_formWindowOpened
 
+    private void tblmkbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblmkbMouseClicked
+        String tk;
+        tk = tblmkb.getValueAt(tblmkb.getSelectedRow(), 0).toString();
+        txtxn.setText(tk);
+    }//GEN-LAST:event_tblmkbMouseClicked
+
+    private void btndyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndyActionPerformed
+        String user,friend,sql = "",ct = null;
+        int idf = 0,idu = 0;
+        ketnoi kn = new ketnoi();
+        friend = tblmkb.getValueAt(tblmkb.getSelectedRow(), 0).toString();
+        sql = "select idu from username where taikhoan  = '"+friend+"'";
+        ResultSet rs = kn.TruyVan(sql);
+        try {
+            while (rs.next())
+            {
+                idf = rs.getInt("idu");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(formtimkiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        user  = txtuser.getText();
+        sql = "select idu from username where taikhoan  = '"+user+"'";
+        rs = kn.TruyVan(sql);
+        try {
+            while (rs.next())
+            {
+                idu = rs.getInt("idu");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(formtimkiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        sql = "update connectuf set request = 1 where idu = "+idu+" and idf = "+idf+"";
+        kn.CapNhat(sql);
+    }//GEN-LAST:event_btndyActionPerformed
+
+    private void btnhuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhuyActionPerformed
+        String user,friend,sql = "",ct = null;
+        int idf = 0,idu = 0;
+        ketnoi kn = new ketnoi();
+        friend = tblmkb.getValueAt(tblmkb.getSelectedRow(), 0).toString();
+        sql = "select idu from username where taikhoan  = '"+friend+"'";
+        ResultSet rs = kn.TruyVan(sql);
+        try {
+            while (rs.next())
+            {
+                idf = rs.getInt("idu");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(formtimkiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        user  = txtuser.getText();
+        sql = "select idu from username where taikhoan  = '"+user+"'";
+        rs = kn.TruyVan(sql);
+        try {
+            while (rs.next())
+            {
+                idu = rs.getInt("idu");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(formtimkiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        sql = "update connectuf set request = 2 where idu = "+idu+" and idf = "+idf+"";
+        kn.CapNhat(sql);
+    }//GEN-LAST:event_btnhuyActionPerformed
+    public void LayDuLieu(String sql)
+    {
+        ketnoi kn = new ketnoi();
+        String header[] = {"Tài khoản"};
+        String friend;
+        int idf = 0;
+        friend = txtuser.getText();
+        sql = "select idu from username where taikhoan  = '"+friend+"'";
+        ResultSet rs = kn.TruyVan(sql);
+        try {
+            while (rs.next())
+            {
+                idf = rs.getInt("idu");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(formtimkiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        DefaultTableModel tblModel = new DefaultTableModel(header, 0);
+        try
+        {
+            Vector data = null;
+            sql = "select taikhoan from username,connectuf where idf = "+idf+" and request = 0";
+            kn.TruyVan(sql);
+            while(rs.next())
+            {
+                data = new Vector();
+                data.add(rs.getString("taikhoan"));             
+                tblModel.addRow(data);
+            }
+            tblmkb.setModel(tblModel);                    
+        }
+        catch(Exception ex)
+        {
+            System.out.println("Loi" + ex);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -381,20 +526,22 @@ public class formcontacts extends javax.swing.JFrame {
     private javax.swing.JButton bntsearch;
     private javax.swing.JButton bntsetting;
     private javax.swing.JButton bntuser;
+    private javax.swing.JButton btndy;
+    private javax.swing.JButton btnhuy;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextArea txtareinvite;
+    public static javax.swing.JTable tblmkb;
     private javax.swing.JTextArea txtarelistfr;
     private javax.swing.JTextField txtsearch;
+    private javax.swing.JTextField txtxn;
     // End of variables declaration//GEN-END:variables
 }
