@@ -118,7 +118,6 @@ public class loginForm extends JDialog {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel4.setBackground(new java.awt.Color(0, 153, 153));
@@ -141,6 +140,12 @@ public class loginForm extends JDialog {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Mật khẩu");
+
+        txtuser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtuserActionPerformed(evt);
+            }
+        });
 
         btnlogin.setText("Đăng nhập");
         btnlogin.addActionListener(new java.awt.event.ActionListener() {
@@ -258,6 +263,10 @@ public class loginForm extends JDialog {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnloginActionPerformed
+
+    private void txtuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtuserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtuserActionPerformed
 
     /**
      * @param args the command line arguments

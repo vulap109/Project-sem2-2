@@ -12,8 +12,8 @@ import java.sql.Statement;
 public final class ConnectionSQL {
 
 //	private static String url = FileHelper.getAppConnectionString(new File("."));
-	private static String url = "jdbc:sqlserver://ProjectSem2.mssql.somee.com;packetsize=4096;user=chaunoon_SQLLogin_1;password=yrdjdkvkw8";
-	private ConnectionSQL() {
+	private static String url = "jdbc:sqlserver://localhost;databaseName=ProjectSem2;user=sa ;password=02008718";
+	public ConnectionSQL() {
 		// TODO Auto-generated constructor stub
 	}
 

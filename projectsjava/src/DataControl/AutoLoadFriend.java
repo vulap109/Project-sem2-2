@@ -21,8 +21,6 @@ public class AutoLoadFriend extends Thread {
 
     private String sql,user,friend;
     private int idu, idf;
-    private loginForm lg;
-    private formchinh mainf;
     private ResultSet rs;
     ketnoi kn= new ketnoi();
     @Override
