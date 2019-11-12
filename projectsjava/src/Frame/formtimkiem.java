@@ -427,6 +427,7 @@ public class formtimkiem extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             Logger.getLogger(formtimkiem.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("loi ket ban: )" + ex);
         }
         sql = "insert into connectuf values ("+idu+","+idf+",'"+ct+"',"+0+")";
         kn.CapNhat(sql);

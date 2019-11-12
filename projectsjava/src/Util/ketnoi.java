@@ -57,7 +57,7 @@ public class ketnoi {
             KetNoiCSDL();
             stmt = conn.prepareStatement(sql);
             int row = stmt.executeUpdate();
-            if(row==1) System.out.println("Thanh cong");
+            if(row==1) System.out.println("cap nhat Thanh cong");
             stmt.close();
             conn.close();
         }

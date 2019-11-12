@@ -43,9 +43,9 @@ public class formcontacts extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         txtsearch = new javax.swing.JTextField();
         bntsearch = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtarelistfr = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblfriend = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         bntuser = new javax.swing.JButton();
         bntmess = new javax.swing.JButton();
@@ -111,12 +111,26 @@ public class formcontacts extends javax.swing.JFrame {
 
         bntsearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-search-40.png"))); // NOI18N
 
-        txtarelistfr.setColumns(20);
-        txtarelistfr.setRows(5);
-        jScrollPane1.setViewportView(txtarelistfr);
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Danh sách bạn bè");
+
+        tblfriend.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Bạn bè"
+            }
+        ));
+        tblfriend.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblfriendMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(tblfriend);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -125,14 +139,14 @@ public class formcontacts extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                         .addComponent(bntsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -144,9 +158,9 @@ public class formcontacts extends javax.swing.JFrame {
                     .addComponent(bntsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 255));
@@ -230,13 +244,13 @@ public class formcontacts extends javax.swing.JFrame {
 
         tblmkb.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Tên", "Sđt", "Giới tính"
             }
         ));
         tblmkb.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -248,6 +262,8 @@ public class formcontacts extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Xác nhận");
+
+        txtxn.setEditable(false);
 
         btndy.setText("Đông ý");
         btndy.addActionListener(new java.awt.event.ActionListener() {
@@ -278,8 +294,8 @@ public class formcontacts extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(txtxn, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btndy, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btndy, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnhuy, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -376,10 +392,55 @@ public class formcontacts extends javax.swing.JFrame {
         fcaidat.setVisible(true);
     }//GEN-LAST:event_bntsettingActionPerformed
   
+    
+    public void laydulieubb(String sql){
+        String header[] = {"Friends"};
+        DefaultTableModel tblmodel= new DefaultTableModel(header, 0);
+        try {
+            Vector data = null;
+            tblmodel.setRowCount(0);
+            ketnoi kn = new ketnoi();
+            ResultSet rs = kn.TruyVan(sql);
+            while(rs.next()){
+                data = new Vector();
+                data.add(rs.getString("taikhoan"));
+         
+                tblmodel.addRow(data);
+            }
+            tblfriend.setModel(tblmodel);
+        } catch (Exception e) {
+            System.out.println("loi lay du lieu ds ban;" +e);
+        }
+    }
+    
+    public void laydulieukb(String sql2){
+        String header[] = {"Họ tên ",  "SĐT","Giới tính"};
+        DefaultTableModel tblmodel= new DefaultTableModel(header, 0);
+        try {
+            Vector data = null;
+            tblmodel.setRowCount(0);
+            ketnoi kn = new ketnoi();
+            ResultSet rs = kn.TruyVan(sql2);
+            while(rs.next()){
+                data = new Vector();
+                data.add(rs.getString("taikhoan"));
+                data.add(rs.getInt("sdt"));
+                data.add(rs.getString("gioitinh"));              
+                
+                tblmodel.addRow(data);
+            }
+            tblmkb.setModel(tblmodel);
+        } catch (Exception e) {
+            System.out.println("loi lay du lieu kb;" +e);
+        }
+    }
+    
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        String sql;
-        ketnoi kn = new ketnoi();
-        
+        String sql, sql2;
+        sql="select username.taikhoan from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 1";
+        laydulieubb(sql);
+        sql2="select * from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 0";
+        laydulieukb(sql2);
     }//GEN-LAST:event_formWindowOpened
 
     private void tblmkbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblmkbMouseClicked
@@ -389,7 +450,7 @@ public class formcontacts extends javax.swing.JFrame {
     }//GEN-LAST:event_tblmkbMouseClicked
 
     private void btndyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndyActionPerformed
-        String user,friend,sql = "",ct = null;
+        String user,friend,sql = "",ct = null, sql2;
         int idf = 0,idu = 0;
         ketnoi kn = new ketnoi();
         friend = tblmkb.getValueAt(tblmkb.getSelectedRow(), 0).toString();
@@ -416,10 +477,15 @@ public class formcontacts extends javax.swing.JFrame {
         }
         sql = "update connectuf set request = 1 where idu = "+idu+" and idf = "+idf+"";
         kn.CapNhat(sql);
+        
+        sql="select username.taikhoan from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 1";
+        laydulieubb(sql);
+        sql2="select * from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 0";
+        laydulieukb(sql2);
     }//GEN-LAST:event_btndyActionPerformed
 
     private void btnhuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhuyActionPerformed
-        String user,friend,sql = "",ct = null;
+        String user,friend,sql = "",ct = null, sql2;
         int idf = 0,idu = 0;
         ketnoi kn = new ketnoi();
         friend = tblmkb.getValueAt(tblmkb.getSelectedRow(), 0).toString();
@@ -446,7 +512,18 @@ public class formcontacts extends javax.swing.JFrame {
         }
         sql = "update connectuf set request = 2 where idu = "+idu+" and idf = "+idf+"";
         kn.CapNhat(sql);
+        sql="select username.taikhoan from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 1";
+        laydulieubb(sql);
+        sql2="select * from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 0";
+        laydulieukb(sql2);
     }//GEN-LAST:event_btnhuyActionPerformed
+
+    private void tblfriendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblfriendMouseClicked
+        // TODO add your handling code here:
+        String f;
+        f = tblfriend.getValueAt(tblfriend.getSelectedRow(), 0).toString();
+
+    }//GEN-LAST:event_tblfriendMouseClicked
     public void LayDuLieu(String sql)
     {
         ketnoi kn = new ketnoi();
@@ -536,11 +613,11 @@ public class formcontacts extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable tblfriend;
     public static javax.swing.JTable tblmkb;
-    private javax.swing.JTextArea txtarelistfr;
     private javax.swing.JTextField txtsearch;
     private javax.swing.JTextField txtxn;
     // End of variables declaration//GEN-END:variables
