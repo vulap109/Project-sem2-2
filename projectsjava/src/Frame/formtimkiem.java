@@ -5,9 +5,13 @@
  */
 package Frame;
 
+import static Frame.loginForm.txtuser;
 import Util.ketnoi;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -41,6 +45,7 @@ public class formtimkiem extends javax.swing.JFrame {
         rdsdt = new javax.swing.JRadioButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tablefriends = new javax.swing.JTable();
+        btnkb = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         bntuser = new javax.swing.JButton();
         bntmess = new javax.swing.JButton();
@@ -121,23 +126,34 @@ public class formtimkiem extends javax.swing.JFrame {
         tablefriends.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(tablefriends);
 
+        btnkb.setText("Kết bạn");
+        btnkb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnkbActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane4)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rdten)
                             .addComponent(rdsdt))
                         .addGap(38, 38, 38)
                         .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
-                        .addComponent(bntsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(237, Short.MAX_VALUE))
+                        .addComponent(bntsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnkb, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,9 +169,14 @@ public class formtimkiem extends javax.swing.JFrame {
                         .addComponent(rdten)
                         .addGap(18, 18, 18)
                         .addComponent(rdsdt)))
-                .addGap(56, 56, 56)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(btnkb))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 255));
@@ -268,7 +289,7 @@ public class formtimkiem extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -381,6 +402,37 @@ public class formtimkiem extends javax.swing.JFrame {
       }
     }//GEN-LAST:event_bntsearchActionPerformed
 
+    private void btnkbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkbActionPerformed
+        String user,friend,sql = "",ct = null;
+        int idf = 0,idu = 0;
+        ketnoi kn = new ketnoi();
+        friend = tablefriends.getValueAt(tablefriends.getSelectedRow(), 0).toString();
+        sql = "select idu from username where taikhoan  = '"+friend+"'";
+        ResultSet rs = kn.TruyVan(sql);
+        try {
+            while (rs.next())
+            {
+                idf = rs.getInt("idu");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(formtimkiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        user  = txtuser.getText();
+        sql = "select idu from username where taikhoan  = '"+user+"'";
+        rs = kn.TruyVan(sql);
+        try {
+            while (rs.next())
+            {
+                idu = rs.getInt("idu");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(formtimkiem.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("loi ket ban: )" + ex);
+        }
+        sql = "insert into connectuf values ("+idu+","+idf+",'"+ct+"',"+0+")";
+        kn.CapNhat(sql);
+    }//GEN-LAST:event_btnkbActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -426,6 +478,7 @@ public class formtimkiem extends javax.swing.JFrame {
     private javax.swing.JButton bntsearch;
     private javax.swing.JButton bntsetting;
     private javax.swing.JButton bntuser;
+    private javax.swing.JButton btnkb;
     private javax.swing.ButtonGroup buttongr;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
