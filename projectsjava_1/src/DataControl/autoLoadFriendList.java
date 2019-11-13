@@ -47,7 +47,7 @@ public class autoLoadFriendList extends Thread{
       }catch(Exception ex){
           System.out.print(ex);
       }
-       sql="select taikhoan from connectuf,username where idu="+id+" and connectuf.idf=username.idu"; 
+       sql="select taikhoan from connectuf,username where connectuf.idu="+id+" and connectuf.idf=username.idu"; 
        String header[]={"taikhoan"};
        DefaultTableModel tblmodel= new DefaultTableModel(header,0);
        try{
