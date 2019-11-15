@@ -27,6 +27,10 @@ public class formcontacts extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+    
+    public boolean isCellEditable(int rowIndex, int columnIndex) { 
+    return false; 
+    } 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -436,10 +440,28 @@ public class formcontacts extends javax.swing.JFrame {
     }
     
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        String sql, sql2;
-        sql="select username.taikhoan from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 1";
+        String user, sql, sql2;
+        int idu=0,idf=0;
+        user  = txtuser.getText();
+        ketnoi kn = new ketnoi();
+        
+        sql = "select idu from username where taikhoan  = '"+user+"'";
+        ResultSet rs = kn.TruyVan(sql);        
+        
+        rs = kn.TruyVan(sql);
+        try {
+            while (rs.next())
+            {
+                idu = rs.getInt("idu");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(formtimkiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //String sql, sql2;
+        sql="select username.taikhoan from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 1 and connectuf.idu = "+idu+" ";
         laydulieubb(sql);
-        sql2="select * from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 0";
+        sql2="select * from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 0 and connectuf.idu = "+idu+" ";
         laydulieukb(sql2);
     }//GEN-LAST:event_formWindowOpened
 
@@ -477,10 +499,10 @@ public class formcontacts extends javax.swing.JFrame {
         }
         sql = "update connectuf set request = 1 where idu = "+idu+" and idf = "+idf+"";
         kn.CapNhat(sql);
-        
-        sql="select username.taikhoan from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 1";
+        txtxn.setText("");
+        sql="select username.taikhoan from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 1 and connectuf.idu = "+idu+" ";
         laydulieubb(sql);
-        sql2="select * from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 0";
+        sql2="select * from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 0 and connectuf.idu = "+idu+" ";
         laydulieukb(sql2);
     }//GEN-LAST:event_btndyActionPerformed
 
@@ -512,9 +534,10 @@ public class formcontacts extends javax.swing.JFrame {
         }
         sql = "update connectuf set request = 2 where idu = "+idu+" and idf = "+idf+"";
         kn.CapNhat(sql);
-        sql="select username.taikhoan from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 1";
+        txtxn.setText("");
+        sql="select username.taikhoan from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 1 and connectuf.idu = "+idu+"";
         laydulieubb(sql);
-        sql2="select * from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 0";
+        sql2="select * from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 0 and connectuf.idu = "+idu+" ";
         laydulieukb(sql2);
     }//GEN-LAST:event_btnhuyActionPerformed
 
@@ -559,6 +582,28 @@ public class formcontacts extends javax.swing.JFrame {
         {
             System.out.println("Loi" + ex);
         }
+    }
+    
+    public int layid(){
+        String user, sql;
+        int idu=0,idf=0;
+        user  = txtuser.getText();
+        ketnoi kn = new ketnoi();
+        
+        sql = "select idu from username where taikhoan  = '"+user+"'";
+        ResultSet rs = kn.TruyVan(sql);        
+        
+        rs = kn.TruyVan(sql);
+        try {
+            while (rs.next())
+            {
+                idu = rs.getInt("idu");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(formtimkiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return idu;
     }
     /**
      * @param args the command line arguments
