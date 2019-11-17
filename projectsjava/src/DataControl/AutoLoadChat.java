@@ -29,7 +29,7 @@ public class AutoLoadChat extends Thread {
       while(true){
           Loaddata();
           try{
-              Thread.sleep(5000);
+              Thread.sleep(500);
           }catch(Exception e){
               System.out.print(e);
           }
