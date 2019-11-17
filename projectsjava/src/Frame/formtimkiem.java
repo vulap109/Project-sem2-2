@@ -431,6 +431,8 @@ public class formtimkiem extends javax.swing.JFrame {
         }
         sql = "insert into connectuf values ("+idu+","+idf+",'"+ct+"',"+0+")";
         kn.CapNhat(sql);
+        sql = "insert into connectuf values ("+idf+","+idu+",'"+ct+"',"+0+")";
+        kn.CapNhat(sql);
     }//GEN-LAST:event_btnkbActionPerformed
 
     /**

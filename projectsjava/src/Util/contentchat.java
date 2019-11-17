@@ -19,7 +19,7 @@ public class contentchat {
     }
 
 //<<<<<<< HEAD:projectsjava/src/Util/contentchat.java
-    public contentchat(String content, String date) {}
+//    public contentchat(String content, String date) {}
 //=======
     public contentchat(String content, int id) {
 //>>>>>>> 9d5887f098cf8bca32268eb3034b20d1d5a409f6:projectsjava/src/Util/contenchat.java
@@ -43,10 +43,10 @@ public class contentchat {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "contenchat{" + "content=" + content + ", id=" + id + '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "contentchat{" + "content=" + content + ", ahihi=" + id + '}';
+//    }
     
 
     

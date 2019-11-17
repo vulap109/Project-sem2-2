@@ -44,13 +44,13 @@ public class contentchats {
 //        sql="select idu from username where  taikhoan = '"+loginForm.txtuser.getText()+"' ";        
 //        getid gid = new getid();        
 //        id = gid.getid(sql);
-        cc = formchinh.txtsend.getText().toString();
+        cc = formchinh.txtsend.getText();
         
         covertJson cj= new covertJson();
-        cj.parseJsonToObject(cc);
+  //      cj.parseJsonToObject(cc);
         //id1 = Integer.parseInt(formchinh.)
         
-        ctc.add(new contentchat(cc,id)); 
+        
         //formchinh.txttext.setText(ctc);
 //        for(contentchat s: ctc)
 //            System.out.println(s);
@@ -60,7 +60,7 @@ public class contentchats {
         String friend, user;
         int idf = 0,idu = 0;
         ketnoi kn = new ketnoi();
-        friend = formchinh.txtnamefriend.getText().toString();
+        friend = formchinh.txtnamefriend.getText();
         sql = "select idu from username where taikhoan  = '"+friend+"'";
         ResultSet rs = kn.TruyVan(sql);
         try {
@@ -71,6 +71,7 @@ public class contentchats {
         } catch (SQLException ex) {
             Logger.getLogger(formtimkiem.class.getName()).log(Level.SEVERE, null, ex);
         }
+   //     ctc.add(new contentchat(cc,idu)); 
         user  = txtuser.getText();
         sql = "select idu from username where taikhoan  = '"+user+"'";
         rs = kn.TruyVan(sql);
@@ -82,7 +83,7 @@ public class contentchats {
         } catch (SQLException ex) {
             Logger.getLogger(formtimkiem.class.getName()).log(Level.SEVERE, null, ex);
         }
-        sql = "update connectuf set content = "+ctc+" where idu = "+idu+" and idf = "+idf+" or idu="+idf+" and idf="+idu+"";
+        sql = "update connectuf set contentchat = '"+idu+":"+cc+"' where idu = "+idu+" and idf = "+idf+" or idu="+idf+" and idf="+idu+"";;;;
         kn.CapNhat(sql);
         
         

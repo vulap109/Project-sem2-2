@@ -499,6 +499,8 @@ public class formcontacts extends javax.swing.JFrame {
         }
         sql = "update connectuf set request = 1 where idu = "+idu+" and idf = "+idf+"";
         kn.CapNhat(sql);
+        sql = "update connectuf set request = 1 where idu = "+idf+" and idf = "+idu+"";
+        kn.CapNhat(sql);
         txtxn.setText("");
         sql="select username.taikhoan from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 1 and connectuf.idu = "+idu+" ";
         laydulieubb(sql);
