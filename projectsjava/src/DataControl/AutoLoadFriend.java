@@ -63,7 +63,7 @@ public class AutoLoadFriend extends Thread {
        try {
             while(rs.next()){
                 friend=rs.getString("contentchat");
-                formchinh.txtareboxchat.setText(friend);
+                formchinh.txtnamefriend.setText(friend);
                 System.out.println("--------------");
             }} catch (SQLException ex) {
             Logger.getLogger(AutoLoadChat.class.getName()).log(Level.SEVERE, null, ex);

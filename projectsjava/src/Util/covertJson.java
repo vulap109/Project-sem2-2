@@ -7,6 +7,8 @@ package Util;
 
 import com.google.gson.Gson;
 
+
+
 /**
  *
  * @author truon
@@ -20,5 +22,6 @@ public class covertJson  {
     public static String parseJsonString(contentchats cc){
         Gson g= new Gson();
         return g.toJson(cc);    
+
     }
 }

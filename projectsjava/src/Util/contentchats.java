@@ -6,10 +6,18 @@
 package Util;
 
 import Frame.formchinh;
+import static Frame.formcontacts.tblmkb;
+import Frame.formtimkiem;
+import static Frame.loginForm.txtuser;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import com.google.gson.Gson;
 
 
 /**
@@ -31,18 +39,53 @@ public class contentchats {
     
 //=======
     public void getcontent(){
-        String content, sql;
+        String cc ="", sql;
         int id = 0;
 //        sql="select idu from username where  taikhoan = '"+loginForm.txtuser.getText()+"' ";        
 //        getid gid = new getid();        
 //        id = gid.getid(sql);
-        content = formchinh.txtsend.getText();
+        cc = formchinh.txtsend.getText().toString();
+        
+        covertJson cj= new covertJson();
+        cj.parseJsonToObject(cc);
         //id1 = Integer.parseInt(formchinh.)
         
-        ctc.add(new contentchat(content,id)); 
+        ctc.add(new contentchat(cc,id)); 
         //formchinh.txttext.setText(ctc);
-        for(contentchat s: ctc)
-            System.out.println(s);
+//        for(contentchat s: ctc)
+//            System.out.println(s);
+
+        
+        
+        String friend, user;
+        int idf = 0,idu = 0;
+        ketnoi kn = new ketnoi();
+        friend = formchinh.txtnamefriend.getText().toString();
+        sql = "select idu from username where taikhoan  = '"+friend+"'";
+        ResultSet rs = kn.TruyVan(sql);
+        try {
+            while (rs.next())
+            {
+                idf = rs.getInt("idu");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(formtimkiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        user  = txtuser.getText();
+        sql = "select idu from username where taikhoan  = '"+user+"'";
+        rs = kn.TruyVan(sql);
+        try {
+            while (rs.next())
+            {
+                idu = rs.getInt("idu");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(formtimkiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        sql = "update connectuf set content = "+ctc+" where idu = "+idu+" and idf = "+idf+" or idu="+idf+" and idf="+idu+"";
+        kn.CapNhat(sql);
+        
+        
         
     }
 //>>>>>>> 9d5887f098cf8bca32268eb3034b20d1d5a409f6

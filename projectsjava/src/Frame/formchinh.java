@@ -6,6 +6,16 @@
 package Frame;
 
 import DataControl.AutoLoadChat;
+import static Frame.loginForm.txtuser;
+import Util.contentchats;
+import Util.covertJson;
+import Util.ketnoi;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -39,10 +49,10 @@ public static String CurrentFriend="";
         jPanel1 = new javax.swing.JPanel();
         txtsearch = new javax.swing.JTextField();
         bntsearch = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtareboxchat = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblfriend = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        txtarenamebox = new javax.swing.JTextField();
+        txtnamefriend = new javax.swing.JTextField();
         bntmore = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         bntuser = new javax.swing.JButton();
@@ -71,6 +81,11 @@ public static String CurrentFriend="";
                 formMouseClicked(evt);
             }
         });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -91,9 +106,23 @@ public static String CurrentFriend="";
             }
         });
 
-        txtareboxchat.setColumns(20);
-        txtareboxchat.setRows(5);
-        jScrollPane1.setViewportView(txtareboxchat);
+        tblfriend.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Bạn bè"
+            }
+        ));
+        tblfriend.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblfriendMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(tblfriend);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -102,7 +131,7 @@ public static String CurrentFriend="";
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
@@ -116,16 +145,16 @@ public static String CurrentFriend="";
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bntsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        txtarenamebox.addActionListener(new java.awt.event.ActionListener() {
+        txtnamefriend.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtarenameboxActionPerformed(evt);
+                txtnamefriendActionPerformed(evt);
             }
         });
 
@@ -138,7 +167,7 @@ public static String CurrentFriend="";
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(txtarenamebox, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtnamefriend, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
                 .addComponent(bntmore, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -151,7 +180,7 @@ public static String CurrentFriend="";
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtarenamebox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtnamefriend, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
 
@@ -439,12 +468,14 @@ public static String CurrentFriend="";
         System.exit(0);
     }//GEN-LAST:event_bntexitActionPerformed
 
-    private void txtarenameboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtarenameboxActionPerformed
+    private void txtnamefriendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnamefriendActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtarenameboxActionPerformed
+    }//GEN-LAST:event_txtnamefriendActionPerformed
 
     private void bntsendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntsendActionPerformed
         // TODO add your handling code here:
+        contentchats ct = new contentchats();
+        ct.getcontent();
         
         
     }//GEN-LAST:event_bntsendActionPerformed
@@ -454,6 +485,59 @@ public static String CurrentFriend="";
         
     }//GEN-LAST:event_bntsearchActionPerformed
 
+    private void tblfriendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblfriendMouseClicked
+        // TODO add your handling code here:
+        String f;
+        f = tblfriend.getValueAt(tblfriend.getSelectedRow(), 0).toString();
+        txtnamefriend.setText(f);
+    }//GEN-LAST:event_tblfriendMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        String user, sql, sql2;
+        int idu=0,idf=0;
+        user  = txtuser.getText();
+        ketnoi kn = new ketnoi();
+        
+        sql = "select idu from username where taikhoan  = '"+user+"'";
+        ResultSet rs = kn.TruyVan(sql);        
+        
+        rs = kn.TruyVan(sql);
+        try {
+            while (rs.next())
+            {
+                idu = rs.getInt("idu");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(formtimkiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //String sql, sql2;
+        sql="select username.taikhoan from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 1 and connectuf.idu = "+idu+" ";
+        laydulieubb(sql);
+        
+    }//GEN-LAST:event_formWindowOpened
+
+    
+    public void laydulieubb(String sql){
+        String header[] = {"Friends"};
+        DefaultTableModel tblmodel= new DefaultTableModel(header, 0);
+        try {
+            Vector data = null;
+            tblmodel.setRowCount(0);
+            ketnoi kn = new ketnoi();
+            ResultSet rs = kn.TruyVan(sql);
+            while(rs.next()){
+                data = new Vector();
+                data.add(rs.getString("taikhoan"));
+         
+                tblmodel.addRow(data);
+            }
+            tblfriend.setModel(tblmodel);
+        } catch (Exception e) {
+            System.out.println("loi lay du lieu ds ban;" +e);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -510,11 +594,11 @@ public static String CurrentFriend="";
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    public static javax.swing.JTextArea txtareboxchat;
-    public static javax.swing.JTextField txtarenamebox;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable tblfriend;
+    public static javax.swing.JTextField txtnamefriend;
     private javax.swing.JTextField txtsearch;
     public static javax.swing.JTextArea txtsend;
     public static javax.swing.JTextArea txttext;
