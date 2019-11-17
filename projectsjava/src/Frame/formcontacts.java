@@ -461,7 +461,7 @@ public class formcontacts extends javax.swing.JFrame {
         //String sql, sql2;
         sql="select username.taikhoan from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 1 and connectuf.idu = "+idu+" ";
         laydulieubb(sql);
-        sql2="select * from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 0 and connectuf.idu = "+idu+" ";
+        sql2="select username.taikhoan, username.sdt, username.gioitinh from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 0 and connectuf.idu = "+idu+" ";
         laydulieukb(sql2);
     }//GEN-LAST:event_formWindowOpened
 
@@ -504,7 +504,7 @@ public class formcontacts extends javax.swing.JFrame {
         txtxn.setText("");
         sql="select username.taikhoan from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 1 and connectuf.idu = "+idu+" ";
         laydulieubb(sql);
-        sql2="select * from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 0 and connectuf.idu = "+idu+" ";
+        sql2="select username.taikhoan from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 0 and connectuf.idu = "+idu+" ";
         laydulieukb(sql2);
     }//GEN-LAST:event_btndyActionPerformed
 
@@ -539,7 +539,7 @@ public class formcontacts extends javax.swing.JFrame {
         txtxn.setText("");
         sql="select username.taikhoan from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 1 and connectuf.idu = "+idu+"";
         laydulieubb(sql);
-        sql2="select * from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 0 and connectuf.idu = "+idu+" ";
+        sql2="select username.taikhoan from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 0 and connectuf.idu = "+idu+" ";
         laydulieukb(sql2);
     }//GEN-LAST:event_btnhuyActionPerformed
 

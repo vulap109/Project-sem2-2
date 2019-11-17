@@ -5,6 +5,7 @@
  */
 package projectsjava;
 
+import DataControl.AutoLoadChat;
 import Frame.loginForm;
 
 /**
@@ -20,6 +21,8 @@ public class Projectsjava {
         // TODO code application logic here
         loginForm flogin = new loginForm();
         flogin.setVisible(true);
+        AutoLoadChat au = new AutoLoadChat();
+        au.run();
     }
     
 }

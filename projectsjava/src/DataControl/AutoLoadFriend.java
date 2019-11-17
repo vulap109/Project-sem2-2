@@ -23,17 +23,17 @@ public class AutoLoadFriend extends Thread {
     private int idu, idf;
     private ResultSet rs;
     ketnoi kn= new ketnoi();
-    @Override
-    public void run() {
-      while(true){
-          Loaddata();
-          try{
-              Thread.sleep(5000);
-          }catch(Exception e){
-              System.out.print(e);
-          }
-      }
-    }
+//   @Override
+//    public void run() {
+//      while(true){
+//         // Loaddata();
+//          try{
+//              Thread.sleep(5000);
+//          }catch(Exception e){
+//              System.out.print(e);
+//          }
+//      }
+//    }
    public void Loaddata(){
       
        //user= formchinh.userName;

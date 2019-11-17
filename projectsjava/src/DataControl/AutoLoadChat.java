@@ -35,6 +35,7 @@ public class AutoLoadChat extends Thread {
           }
       }
     }
+    
    public void Loaddata(){
       
        user= formchinh.userName;
