@@ -43,7 +43,7 @@ public class formuser extends javax.swing.JDialog {
                 data = new Vector();
                 String ten = rs.getString("taikhoan");
                 String gt = rs.getString("gioitinh");
-                Double sdt = rs.getDouble("sdt");
+                int sdt = rs.getInt("sdt");
 
                 txtareu.setText("\t\t" + ten);
                 txtareu.append("\n\nGiới Tính: \t" + gt);
