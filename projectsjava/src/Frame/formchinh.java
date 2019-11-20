@@ -6,6 +6,7 @@
 package Frame;
 
 import DataControl.AutoLoadChat;
+import DataControl.AutoLoadFriend;
 import static Frame.loginForm.txtuser;
 import Util.contentchats;
 import Util.covertJson;
@@ -33,9 +34,10 @@ public static String CurrentFriend="";
         initComponents();
         this.setLocationRelativeTo(null);
         loginForm lg=new loginForm(this);        
-        lg.setVisible(true);                
+        lg.setVisible(true); 
+        userName= lg.txtuser.getText();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -487,13 +489,13 @@ public static String CurrentFriend="";
 
     private void tblfriendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblfriendMouseClicked
         // TODO add your handling code here:
-        String f;
-        f = tblfriend.getValueAt(tblfriend.getSelectedRow(), 0).toString();
-        txtnamefriend.setText(f);
+        
+        CurrentFriend = tblfriend.getValueAt(tblfriend.getSelectedRow(), 0).toString();
+        txtnamefriend.setText(CurrentFriend);    
     }//GEN-LAST:event_tblfriendMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
+   /*     // TODO add your handling code here:
         String user, sql, sql2;
         int idu=0,idf=0;
         user  = txtuser.getText();
@@ -515,11 +517,11 @@ public static String CurrentFriend="";
         //String sql, sql2;
         sql="select username.taikhoan from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 1 and connectuf.idu = "+idu+" ";
         laydulieubb(sql);
-        
+        */
     }//GEN-LAST:event_formWindowOpened
 
     
-    public void laydulieubb(String sql){
+   /* public void laydulieubb(String sql){
         String header[] = {"Friends"};
         DefaultTableModel tblmodel= new DefaultTableModel(header, 0);
         try {
@@ -537,7 +539,7 @@ public static String CurrentFriend="";
         } catch (Exception e) {
             System.out.println("loi lay du lieu ds ban;" +e);
         }
-    }
+    }*/
     /**
      * @param args the command line arguments
      */
@@ -570,6 +572,7 @@ public static String CurrentFriend="";
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new formchinh().setVisible(true);
+           
             }
         });
     }
@@ -597,7 +600,7 @@ public static String CurrentFriend="";
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable tblfriend;
+    public static javax.swing.JTable tblfriend;
     public static javax.swing.JTextField txtnamefriend;
     private javax.swing.JTextField txtsearch;
     public static javax.swing.JTextArea txtsend;

@@ -6,7 +6,9 @@
 package DataControl;
 
 import Frame.formchinh;
+import static Frame.formchinh.txtnamefriend;
 import Frame.loginForm;
+import Util.ConnectionSQL;
 import Util.ketnoi;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,15 +23,15 @@ public class AutoLoadChat extends Thread {
     private String sql,user,friend, content;
     private int idu, idf;
     private loginForm lg;
-    private formchinh mainf;
-    private ResultSet rs;
-    ketnoi kn= new ketnoi();
+    private ConnectionSQL kn;
+  
+    
     @Override
     public void run() {
       while(true){
           Loaddata();
           try{
-              Thread.sleep(500);
+              Thread.sleep(1000);
           }catch(Exception e){
               System.out.print(e);
           }
@@ -37,12 +39,13 @@ public class AutoLoadChat extends Thread {
     }
     
    public void Loaddata(){
-      
-       user= formchinh.userName;
+       kn= new ConnectionSQL();
+       user=formchinh.userName;
        friend= formchinh.CurrentFriend;
-       //lay idu cua user trong bang taikhoan s e noi ko dk
+       
        sql="select idu  from username where taikhoan='"+user+"'";
-       rs= kn.TruyVan(sql);
+       ResultSet rs;
+       rs= kn.Query(sql);
         try {
             while(rs.next()){
                 idu=rs.getInt("idu");
@@ -51,23 +54,24 @@ public class AutoLoadChat extends Thread {
         }
         // lay idu cua friend trong bang taikhoan
        sql="select idu from username where taikhoan='"+friend+"'";
-       kn.TruyVan(sql);
+       rs=kn.Query(sql);
        try {
             while(rs.next()){
                 idf=rs.getInt("idu");
             } } catch (SQLException ex) {
             Logger.getLogger(AutoLoadChat.class.getName()).log(Level.SEVERE, null, ex);
         }
-       // su dung 2 idu de lay ra content tai bang connectuf
+       // su dung 2 idu de lay ra content tai bang connectuf*/
        sql="select contentchat from connectuf where idu="+idu+" and idf="+idf+"";
-       rs= kn.TruyVan(sql);
+       rs= kn.Query(sql);
        // lay content va load len o noi dung chat chinh 
        try {
             while(rs.next()){
                 content=rs.getString("contentchat");
-                mainf.txttext.setText(content);
+                formchinh.txttext.setText(content);
             }} catch (SQLException ex) {
             Logger.getLogger(AutoLoadChat.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+  
  }

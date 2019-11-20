@@ -7,11 +7,14 @@ package DataControl;
 
 import Frame.formchinh;
 import Frame.loginForm;
+import Util.ConnectionSQL;
 import Util.ketnoi;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,55 +22,51 @@ import java.util.logging.Logger;
  */
 public class AutoLoadFriend extends Thread {
 
-    private String sql,user,friend;
-    private int idu, idf;
+    private int id;
+    private String sql, user;
+    private ConnectionSQL cnt;
     private ResultSet rs;
-    ketnoi kn= new ketnoi();
-//   @Override
-//    public void run() {
-//      while(true){
-//         // Loaddata();
-//          try{
-//              Thread.sleep(5000);
-//          }catch(Exception e){
-//              System.out.print(e);
-//          }
-//      }
-//    }
-   public void Loaddata(){
-      
-       //user= formchinh.userName;
-       //friend= formchinh.CurrentFriend;
-       //lay idu cua user trong bang taikhoan s e noi ko dk
-       sql="select idu  from username where taikhoan='"+user+"'";
-       rs= kn.TruyVan(sql);
-        try {
-            while(rs.next()){
-                idu=rs.getInt("idu");
-            } } catch (SQLException ex) {
-            Logger.getLogger(AutoLoadChat.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        // lay idu cua friend trong bang taikhoan
-       sql="select idf from connectuf where idu="+idu+"";
-       kn.TruyVan(sql);
-       try {
-            while(rs.next()){
-                idf=rs.getInt("idu");
-            } } catch (SQLException ex) {
-            Logger.getLogger(AutoLoadChat.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       // su dung 2 idu de lay ra content tai bang connectuf
-       sql="select taikhoan from username where idf="+idf+"";
-       rs= kn.TruyVan(sql);
-       // lay content va load len o noi dung chat chinh 
-       try {
-            while(rs.next()){
-                friend=rs.getString("contentchat");
-                formchinh.txtnamefriend.setText(friend);
-                System.out.println("--------------");
-            }} catch (SQLException ex) {
-            Logger.getLogger(AutoLoadChat.class.getName()).log(Level.SEVERE, null, ex);
+ 
+    @Override
+    public void run() {
+        while(true){
+           autoload();
+           try{
+               Thread.sleep(500);
+           }catch(Exception ex){
+               System.out.print(ex);
+           }
         }
     }
     
+    public void autoload(){
+        
+        cnt= new ConnectionSQL();
+        user=formchinh.userName;
+        sql="select idu from username where taikhoan='"+user+"'";
+        rs=cnt.Query(sql);
+      try{
+          while(rs.next()){
+              id=rs.getInt("idu");
+          }
+      }catch(Exception ex){
+          System.out.print(ex);
+      }
+       sql="select taikhoan from connectuf,username where connectuf.idu="+id+" and connectuf.idf=username.idu"; 
+       String header[]={"taikhoan"};
+       DefaultTableModel tblmodel= new DefaultTableModel(header,0);
+       try{
+            Vector data=null;
+            tblmodel.setRowCount(0);
+            rs=cnt.Query(sql);
+            while(rs.next()){
+                data= new Vector();
+                data.add(rs.getString("taikhoan"));
+                tblmodel.addRow(data);
+            }
+            formchinh.tblfriend.setModel(tblmodel);
+            }catch(Exception ex){
+            System.out.print(ex);
+        }
+    } 
 }
