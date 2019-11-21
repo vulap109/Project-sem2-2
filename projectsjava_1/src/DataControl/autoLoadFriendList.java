@@ -8,20 +8,15 @@ package DataControl;
 import Frame.formchinh;
 import Frame.loginForm;
 import Util.ConnectionSQL;
-import Util.ketnoi;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author truon
  */
-public class AutoLoadFriend extends Thread {
-
+public class autoLoadFriendList extends Thread{
     private int id;
     private String sql, user;
     private ConnectionSQL cnt;
@@ -42,7 +37,7 @@ public class AutoLoadFriend extends Thread {
     public void autoload(){
         
         cnt= new ConnectionSQL();
-        user=formchinh.userName;
+        user=loginForm.txtuser.getText();
         sql="select idu from username where taikhoan='"+user+"'";
         rs=cnt.Query(sql);
       try{
@@ -52,7 +47,7 @@ public class AutoLoadFriend extends Thread {
       }catch(Exception ex){
           System.out.print(ex);
       }
-       sql="select taikhoan from connectuf,username where connectuf.idu="+id+" and connectuf.idf=username.idu and request= 1"; 
+       sql="select taikhoan from connectuf,username where connectuf.idu="+id+" and connectuf.idf=username.idu"; 
        String header[]={"taikhoan"};
        DefaultTableModel tblmodel= new DefaultTableModel(header,0);
        try{
@@ -64,7 +59,7 @@ public class AutoLoadFriend extends Thread {
                 data.add(rs.getString("taikhoan"));
                 tblmodel.addRow(data);
             }
-            formchinh.tblfriend.setModel(tblmodel);
+            formchinh.friendlist.setModel(tblmodel);
             }catch(Exception ex){
             System.out.print(ex);
         }

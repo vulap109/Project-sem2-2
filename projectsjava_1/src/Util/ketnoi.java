@@ -23,12 +23,7 @@ public class ketnoi {
     {
         try
         {
-<<<<<<< HEAD
-            String dbURL ="jdbc:sqlserver://ProjectSem2.mssql.somee.com;packetsize=4096;user=chaunoon_SQLLogin_1;password=yrdjdkvkw8";
-=======
-//            String dbURL = "jdbc:sqlserver://localhost;databaseName=ProjectSem2;user=sa ;password=02008718";
             String dbURL = "jdbc:sqlserver://ProjectSem2.mssql.somee.com;packetsize=4096;user=chaunoon_SQLLogin_1;password=yrdjdkvkw8";
->>>>>>> ad0a5a23111161b7339160a0799c263d4006486c
             conn = DriverManager.getConnection(dbURL);
             if(conn!=null)
             {
@@ -51,7 +46,7 @@ public class ketnoi {
         }
         catch(Exception ex)
         {
-            System.out.println("Loi truy van:" + ex);
+            System.out.println("Loi:" + ex);
         }
         return rs;
     }
@@ -62,13 +57,13 @@ public class ketnoi {
             KetNoiCSDL();
             stmt = conn.prepareStatement(sql);
             int row = stmt.executeUpdate();
-            if(row==1) System.out.println("cap nhat Thanh cong");
+            if(row==1) System.out.println("Thanh cong");
             stmt.close();
             conn.close();
         }
         catch(Exception ex)
         {
-            System.out.println("Loi cap nhat:" + ex);
+            System.out.println("Loi:" + ex);
         }
     }
 }

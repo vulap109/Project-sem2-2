@@ -5,6 +5,8 @@
  */
 package Util;
 
+import Frame.formchinh;
+
 /**
  *
  * @author Admin
@@ -12,9 +14,11 @@ package Util;
 public class contentchat {
     //public int id1,id2;
     public String content;
-
     public int id;
-
+    private String sql,user;
+    
+    
+    
     public contentchat() {
     }
 
@@ -48,9 +52,17 @@ public class contentchat {
 //        return "contentchat{" + "content=" + content + ", ahihi=" + id + '}';
 //    }
     
-
+    public void getcontent(){
+           content=formchinh.txtsend.getText();
+           user= formchinh.userName;
+           sql="select idu from username where taikhoan='"+user+"'";
+           getid getid= new getid();
+           try{
+           id=getid.getid(sql);
+           }catch(Exception ex){
+               System.out.print(ex);
+           }
+           }
     
 
-    
-    
 }

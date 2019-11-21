@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Frame;
+package projectsjava;
 
 import DataControl.AutoLoadChat;
 import DataControl.AutoLoadFriend;
+import Frame.formchinh;
 
 /**
  *
@@ -18,12 +19,7 @@ public class main {
         AutoLoadFriend b= new AutoLoadFriend();
         formchinh a= new formchinh();
         a.setVisible(true);
-       while(true){ 
         b.start();
-       if(formchinh.txtnamefriend!=null){
-           break;
-       }
-       }
         c.start();
          
     }

@@ -6,7 +6,6 @@
 package DataControl;
 
 import Frame.formchinh;
-import static Frame.formchinh.txtnamefriend;
 import Frame.loginForm;
 import Util.ConnectionSQL;
 import Util.ketnoi;
@@ -19,59 +18,54 @@ import java.util.logging.Logger;
  *
  * @author truon
  */
-public class AutoLoadChat extends Thread {
+public class Autoload extends Thread {
     private String sql,user,friend, content;
     private int idu, idf;
     private loginForm lg;
-    private ConnectionSQL kn;
-  
-    
+    private formchinh mainf;
+    private ResultSet rs;
+    ConnectionSQL cnt= new ConnectionSQL();
     @Override
     public void run() {
-      while(true){
-          Loaddata();
-          try{
-              Thread.sleep(500);
-          }catch(Exception e){
-              System.out.print(e);
-          }
-      }
+      try{ 
+        while(true){
+        Loaddata();
+       }}catch(Exception e){
+          System.out.print(e);     
+               }
     }
-    
    public void Loaddata(){
-       kn= new ConnectionSQL();
-       user=formchinh.userName;
+      
+       user= formchinh.userName;
        friend= formchinh.CurrentFriend;
-       
+       //lay idu cua user trong bang taikhoan s e noi ko dk
        sql="select idu  from username where taikhoan='"+user+"'";
-       ResultSet rs;
-       rs= kn.Query(sql);
+       rs= cnt.Query(sql);
         try {
             while(rs.next()){
                 idu=rs.getInt("idu");
             } } catch (SQLException ex) {
-            Logger.getLogger(AutoLoadChat.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Autoload.class.getName()).log(Level.SEVERE, null, ex);
         }
         // lay idu cua friend trong bang taikhoan
        sql="select idu from username where taikhoan='"+friend+"'";
-       rs=kn.Query(sql);
+       cnt.Query(sql);
        try {
             while(rs.next()){
                 idf=rs.getInt("idu");
             } } catch (SQLException ex) {
-            Logger.getLogger(AutoLoadChat.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Autoload.class.getName()).log(Level.SEVERE, null, ex);
         }
-       // su dung 2 idu de lay ra content tai bang connectuf*/
+       // su dung 2 idu de lay ra content tai bang connectuf
        sql="select contentchat from connectuf where idu="+idu+" and idf="+idf+"";
-       rs= kn.Query(sql);
+       rs= cnt.Query(sql);
        // lay content va load len o noi dung chat chinh 
        try {
             while(rs.next()){
                 content=rs.getString("contentchat");
-                formchinh.txttext.setText(content);
+                mainf.txttext.setText(content);
             }} catch (SQLException ex) {
-            Logger.getLogger(AutoLoadChat.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Autoload.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-  
  }
