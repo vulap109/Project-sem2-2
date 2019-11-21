@@ -53,6 +53,7 @@ public class AutoLoadFriend extends Thread {
           System.out.print(ex);
       }
        sql="select taikhoan from connectuf,username where connectuf.idu="+id+" and connectuf.idf=username.idu and request= 1"; 
+//       sql="select username.taikhoan from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 1 and connectuf.idu = "+id+" or connectuf.request = 1 and connectuf.idf = "+id+" ";
        String header[]={"taikhoan"};
        DefaultTableModel tblmodel= new DefaultTableModel(header,0);
        try{

@@ -499,28 +499,28 @@ public static String CurrentFriend="";
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        String user, sql, sql2;
-        int idu=0,idf=0;
-        user  = txtuser.getText();
-        ketnoi kn = new ketnoi();
-        
-        sql = "select idu from username where taikhoan  = '"+user+"'";
-        ResultSet rs = kn.TruyVan(sql);        
-        
-        rs = kn.TruyVan(sql);
-        try {
-            while (rs.next())
-            {
-                idu = rs.getInt("idu");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(formtimkiem.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        //String sql, sql2;
-        sql="select username.taikhoan from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 1 and connectuf.idu = "+idu+" ";
-        laydulieubb(sql);
-        
+//        String user, sql, sql2;
+//        int idu=0,idf=0;
+//        user  = txtuser.getText();
+//        ketnoi kn = new ketnoi();
+//        
+//        sql = "select idu from username where taikhoan  = '"+user+"'";
+//        ResultSet rs = kn.TruyVan(sql);        
+//        
+//        rs = kn.TruyVan(sql);
+//        try {
+//            while (rs.next())
+//            {
+//                idu = rs.getInt("idu");
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(formtimkiem.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//        //String sql, sql2;
+//        sql="select username.taikhoan from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 1 and connectuf.idu = "+idu+" ";
+//        laydulieubb(sql);
+//        
     }//GEN-LAST:event_formWindowOpened
 
     
