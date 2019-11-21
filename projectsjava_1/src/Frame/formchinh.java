@@ -43,7 +43,7 @@ public static String CurrentFriend="";
         jScrollPane4 = new javax.swing.JScrollPane();
         friendlist = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        txtarenamebox = new javax.swing.JTextField();
+        txtfriend = new javax.swing.JTextField();
         bntmore = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         bntuser = new javax.swing.JButton();
@@ -103,6 +103,11 @@ public static String CurrentFriend="";
                 "                          Friend   "
             }
         ));
+        friendlist.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                friendlistMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(friendlist);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -124,9 +129,9 @@ public static String CurrentFriend="";
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bntsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bntsearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -134,9 +139,9 @@ public static String CurrentFriend="";
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        txtarenamebox.addActionListener(new java.awt.event.ActionListener() {
+        txtfriend.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtarenameboxActionPerformed(evt);
+                txtfriendActionPerformed(evt);
             }
         });
 
@@ -149,7 +154,7 @@ public static String CurrentFriend="";
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(txtarenamebox, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtfriend, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(bntmore, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -162,7 +167,7 @@ public static String CurrentFriend="";
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtarenamebox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtfriend, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
 
@@ -449,9 +454,9 @@ public static String CurrentFriend="";
         System.exit(0);
     }//GEN-LAST:event_bntexitActionPerformed
 
-    private void txtarenameboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtarenameboxActionPerformed
+    private void txtfriendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfriendActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtarenameboxActionPerformed
+    }//GEN-LAST:event_txtfriendActionPerformed
 
     private void bntsendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntsendActionPerformed
         // TODO add your handling code here:
@@ -462,6 +467,12 @@ public static String CurrentFriend="";
         // TODO add your handling code here:
         
     }//GEN-LAST:event_bntsearchActionPerformed
+
+    private void friendlistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_friendlistMouseClicked
+        String f;
+        f = friendlist.getValueAt(friendlist.getSelectedRow(), 0).toString();
+        txtfriend.setText(f);
+    }//GEN-LAST:event_friendlistMouseClicked
 
     /**
      * @param args the command line arguments
@@ -523,7 +534,7 @@ public static String CurrentFriend="";
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    public static javax.swing.JTextField txtarenamebox;
+    public static javax.swing.JTextField txtfriend;
     private javax.swing.JTextField txtsearch;
     public static javax.swing.JTextArea txtsend;
     public static javax.swing.JTextArea txttext;

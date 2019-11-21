@@ -23,7 +23,9 @@ public class ketnoi {
     {
         try
         {
-            String dbURL = "jdbc:sqlserver://ProjectSem2.mssql.somee.com;packetsize=4096;user=chaunoon_SQLLogin_1;password=yrdjdkvkw8";
+            String dbURL ="jdbc:sqlserver://ProjectSem2.mssql.somee.com;packetsize=4096;user=chaunoon_SQLLogin_1;password=yrdjdkvkw8";
+//            String dbURL = "jdbc:sqlserver://localhost;databaseName=ProjectSem2;user=sa ;password=02008718";
+
             conn = DriverManager.getConnection(dbURL);
             if(conn!=null)
             {

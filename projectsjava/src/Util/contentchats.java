@@ -83,7 +83,7 @@ public class contentchats {
         } catch (SQLException ex) {
             Logger.getLogger(formtimkiem.class.getName()).log(Level.SEVERE, null, ex);
         }
-        sql = "update connectuf set contentchat = '"+idu+":"+cc+"' where idu = "+idu+" and idf = "+idf+" or idu="+idf+" and idf="+idu+"";;;;
+        sql = "update connectuf set contentchat = '"+user+":"+" "+cc+"' where idu = "+idu+" and idf = "+idf+" or idu="+idf+" and idf="+idu+"";;;;
         kn.CapNhat(sql);
         
         

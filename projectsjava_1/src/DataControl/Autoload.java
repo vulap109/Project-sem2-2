@@ -7,6 +7,7 @@ package DataControl;
 
 import Frame.formchinh;
 import Frame.loginForm;
+import Util.ConnectionSQL;
 import Util.ketnoi;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,7 +24,7 @@ public class Autoload extends Thread {
     private loginForm lg;
     private formchinh mainf;
     private ResultSet rs;
-    ketnoi kn= new ketnoi();
+    ConnectionSQL cnt= new ConnectionSQL();
     @Override
     public void run() {
       try{ 
@@ -39,7 +40,7 @@ public class Autoload extends Thread {
        friend= formchinh.CurrentFriend;
        //lay idu cua user trong bang taikhoan s e noi ko dk
        sql="select idu  from username where taikhoan='"+user+"'";
-       rs= kn.TruyVan(sql);
+       rs= cnt.Query(sql);
         try {
             while(rs.next()){
                 idu=rs.getInt("idu");
@@ -48,7 +49,7 @@ public class Autoload extends Thread {
         }
         // lay idu cua friend trong bang taikhoan
        sql="select idu from username where taikhoan='"+friend+"'";
-       kn.TruyVan(sql);
+       cnt.Query(sql);
        try {
             while(rs.next()){
                 idf=rs.getInt("idu");
@@ -57,7 +58,7 @@ public class Autoload extends Thread {
         }
        // su dung 2 idu de lay ra content tai bang connectuf
        sql="select contentchat from connectuf where idu="+idu+" and idf="+idf+"";
-       rs= kn.TruyVan(sql);
+       rs= cnt.Query(sql);
        // lay content va load len o noi dung chat chinh 
        try {
             while(rs.next()){

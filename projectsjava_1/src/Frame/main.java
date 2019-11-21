@@ -16,7 +16,6 @@ public class main {
        
         formchinh b= new formchinh();
         b.setVisible(true);
-         autoLoadFriendList a= new autoLoadFriendList();
-        a.start();
+        
     }
 }

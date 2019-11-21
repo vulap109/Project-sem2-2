@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author truon
  */
-public class loginForm extends JDialog {
+public class loginForm extends javax.swing.JDialog {
 
     /**
      * Creates new form loginFrame

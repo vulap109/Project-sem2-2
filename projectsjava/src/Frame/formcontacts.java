@@ -446,8 +446,7 @@ public class formcontacts extends javax.swing.JFrame {
         ketnoi kn = new ketnoi();
         
         sql = "select idu from username where taikhoan  = '"+user+"'";
-        ResultSet rs = kn.TruyVan(sql);        
-        
+        ResultSet rs = kn.TruyVan(sql); 
         rs = kn.TruyVan(sql);
         try {
             while (rs.next())
@@ -461,7 +460,7 @@ public class formcontacts extends javax.swing.JFrame {
         //String sql, sql2;
         sql="select username.taikhoan from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 1 and connectuf.idu = "+idu+" ";
         laydulieubb(sql);
-        sql2="select username.taikhoan, username.sdt, username.gioitinh from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 0 and connectuf.idu = "+idu+" ";
+        sql2="select username.taikhoan, username.sdt, username.gioitinh from connectuf inner join username on connectuf.idf = username.idu where connectuf.request = 0 and connectuf.idu = "+idu+" and connectuf.idf != "+idu+" ";
         laydulieukb(sql2);
     }//GEN-LAST:event_formWindowOpened
 

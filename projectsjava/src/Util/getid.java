@@ -16,13 +16,10 @@ import java.util.Vector;
 public class getid {
     public int getid( String sql) throws SQLException{
             Vector data = null;
-            ketnoi kn = new ketnoi();
-            ResultSet rs = kn.TruyVan(sql);
-                data = new Vector();
-                int id = rs.getInt("idu");             
-        
-            
-        return id;
+            ConnectionSQL cn= new ConnectionSQL();
+            ResultSet rs = cn.Query(sql);
+            int id = rs.getInt("idu");             
+            return id;
         
     }
 }
